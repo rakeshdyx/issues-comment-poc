@@ -8,11 +8,11 @@ import base64
 
 def createSecret(repository_name, secret_name, secret_value, github_token):
     api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{secret_name}"
-    print(api_url)
     headers = {
     "Authorization": f"Bearer {github_token}",
     "Accept": "application/vnd.github.v3+json"
     }
+    print(headers)
 ### Encode the secret value as base64
     encoded_secret_value = base64.b64encode(secret_value.encode()).decode()
 ### API request payload
