@@ -29,6 +29,13 @@ except json.JSONDecodeError as e:
     print("Error decoding JSON", e)
 
 for key, value in comment_body_dict.items():
-    print(f"{key} -> {value}")
+    if key == "Job":
+        print("Update Github Secrets Job Name")
+    elif key == "InstanceName":
+        print("Update Github Secrets InstanceName")
+    elif key == "Environment":
+        print("Update Github Secrets for ENV")
+    else:
+        print("Value is unrecognized, Please validate input data")
 
 
