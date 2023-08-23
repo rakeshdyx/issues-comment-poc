@@ -28,7 +28,7 @@ try:
 except json.JSONDecodeError as e:
     print("Error decoding JSON", e)
 
-for key, value in comment_body_dict:
-    print(key)
+for value in comment_body_dict:
+    print(value)
 
 
