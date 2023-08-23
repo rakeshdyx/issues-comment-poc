@@ -8,6 +8,7 @@ import base64
 
 def createSecret(repository_name, secret_name, secret_value, github_token):
     api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{secret_name}"
+    print(api_url)
     headers = {
     "Authorization": f"Bearer {github_token}",
     "Accept": "application/vnd.github.v3+json"
@@ -57,9 +58,9 @@ for key, value in comment_body_dict.items():
     if key == "Job":
         createSecret(repo_name, "JOB_NAME", value, github_token)
     elif key == "InstanceName":
-        createSecret(repo_name, "JOB_NAME", value, github_token)
+        createSecret(repo_name, "INSTANCE_NAME", value, github_token)
     elif key == "Environment":
-        createSecret(repo_name, "JOB_NAME", value, github_token)
+        createSecret(repo_name, "ENV", value, github_token)
     else:
         print("Value is unrecognized, Please validate input data")
 
