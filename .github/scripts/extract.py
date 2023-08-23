@@ -2,6 +2,7 @@ from github import Github
 from github import Auth
 import sys
 
+comment_body = []
 # Replace with your GitHub token or credentials
 github_token = sys.argv[1]
 
@@ -15,7 +16,9 @@ issue = repo.get_issue(number=1)
 
 comments = issue.get_comments()
 for comment in comments:
-    print(comment.body)
+    comment_body.append(comment.body)
+print(comment_body)
+
 
 
 
