@@ -18,8 +18,7 @@ def createSecret(repository_name, secret_name, secret_value, github_token):
     encoded_secret_value = base64.b64encode(secret_value.encode()).decode()
 ### API request payload
     payload = {
-        "encrypted_value": encoded_secret_value,
-        "key_id": ""
+        "encrypted_value": encoded_secret_value
         }
     response = requests.put(api_url, json=payload, headers=headers)
 
