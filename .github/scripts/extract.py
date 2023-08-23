@@ -16,7 +16,9 @@ issue = repo.get_issue(number=2)
 
 comments = issue.get_comments()
 for comment in comments:
-    print(comment.body)
+    comment_body_json = comment.body
+
+print(comment_body_json)
 
 
 
