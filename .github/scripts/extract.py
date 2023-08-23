@@ -12,7 +12,7 @@ g = Github(auth=auth)
 
 repo = g.get_repo("rakeshdyx/issues-comment-poc")
 
-issue = repo.get_issue(number=1)
+issue = repo.get_issue(number=2)
 
 comments = issue.get_comments()
 for comment in comments:
