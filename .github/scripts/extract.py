@@ -14,7 +14,8 @@ repo = g.get_repo("rakeshdyx/issues-comment-poc")
 issue = repo.get_issue(number=1)
 
 comments = issue.get_comments()
-print(comments)
+for comment in comments:
+    print(comment.body)
 
 
 
