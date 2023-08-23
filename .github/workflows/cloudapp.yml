@@ -37,5 +37,5 @@ jobs:
         id: extract_comment
         run: |
           cd .github/scripts
-          python extract.py ${{ secrets.GITHUB_TOKEN }}
+          python extract.py ${{ secrets.PAT }}
 
