@@ -21,7 +21,7 @@ def createSecret(repository_name, secret_name, secret_value, github_token):
         }
     response = requests.put(api_url, json=payload, headers=headers)
 
-    if response.status.code == 201:
+    if response.status_code == 201:
         print(f"Secret '{secret_name}' created successfully.")
     else:
         print(f"Failed to create secret '{secret_name}'.")
