@@ -10,7 +10,8 @@ def createSecret(repository_name, secret_name, secret_value, github_token):
     api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{secret_name}"
     headers = {
     "Authorization": f"Bearer {github_token}",
-    "Accept": "application/vnd.github.v3+json"
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
     }
     print(headers)
 ### Encode the secret value as base64
