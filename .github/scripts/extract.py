@@ -1,6 +1,7 @@
 from github import Github
 from github import Auth
 import sys
+import json
 
 
 # Replace with your GitHub token or credentials
@@ -17,9 +18,11 @@ issue = repo.get_issue(number=2)
 comments = issue.get_comments()
 for comment in comments:
     comment_body_json = comment.body
-
-print(comment_body_json)
-
+try:
+    comment_body_dict = json.loads(comment_body_json)
+    print(comment_body_dict)
+except json.JSONDecodeError as e:
+    print("Error decoding JSON", e)
 
 
 
