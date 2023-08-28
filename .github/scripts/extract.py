@@ -7,7 +7,7 @@ import base64
 
 
 def createRpoVar(repository_name: str, var_name: str, var_value: str, github_token: str):
-    api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{secret_name}"
+    api_url = f"https://api.github.com/repos/{repository_name}/actions/variables"
     headers = {
     "Authorization": f"Bearer {github_token}",
     "Accept": "application/vnd.github+json",
