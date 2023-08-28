@@ -6,7 +6,7 @@ import requests
 import base64
 
 
-def createSecret(repository_name, secret_name, secret_value, github_token):
+def createRpoVar(repository_name: str, var_name: str, var_value: str, github_token: str):
     api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{secret_name}"
     headers = {
     "Authorization": f"Bearer {github_token}",
@@ -14,18 +14,18 @@ def createSecret(repository_name, secret_name, secret_value, github_token):
     "X-GitHub-Api-Version": "2022-11-28"
     }
     print(headers)
-### Encode the secret value as base64
-    encoded_secret_value = base64.b64encode(secret_value.encode()).decode()
+
 ### API request payload
     payload = {
-        "encrypted_value": encoded_secret_value
+        "name" : var_name,
+        "value" : var_value
         }
     response = requests.put(api_url, json=payload, headers=headers)
 
     if response.status_code == 201:
-        print(f"Secret '{secret_name}' created successfully.")
+        print(f"Secret '{var_name}' created successfully.")
     else:
-        print(f"Failed to create secret '{secret_name}'.")
+        print(f"Failed to create secret '{var_name}'.")
         print(f"Response status code: {response.status_code}")
         print(f"Response content: {response.content}")
 
@@ -56,11 +56,11 @@ except json.JSONDecodeError as e:
 
 for key, value in comment_body_dict.items():
     if key == "Job":
-        createSecret(repo_name, "JOB_NAME", value, github_token)
+        createRpoVar(repo_name, "JOB_NAME", value, github_token)
     elif key == "InstanceName":
-        createSecret(repo_name, "INSTANCE_NAME", value, github_token)
+        createRpoVar(repo_name, "INSTANCE_NAME", value, github_token)
     elif key == "Environment":
-        createSecret(repo_name, "ENV", value, github_token)
+        createRpoVar(repo_name, "ENV", value, github_token)
     else:
         print("Value is unrecognized, Please validate input data")
 
