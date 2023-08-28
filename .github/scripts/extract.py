@@ -1,6 +1,5 @@
 from github import Github
 from github import Auth
-from ghapi.all import GhApi
 import sys
 import json
 import requests
