@@ -1,13 +1,15 @@
 from github import Github
 from github import Auth
+from ghapi.all import GhApi
 import sys
 import json
 import requests
 import base64
+import os
 
 
 def createRpoVar(repository_name: str, var_name: str, var_value: str, github_token: str):
-    api_url = f"https://api.github.com/repos/{repository_name}/actions/variables"
+    api_url = f"https://api.github.com/repos/{repository_name}/actions/secrets/{var_name}"
     headers = {
     "Authorization": f"Bearer {github_token}",
     "Accept": "application/vnd.github+json",
@@ -17,8 +19,7 @@ def createRpoVar(repository_name: str, var_name: str, var_value: str, github_tok
 
 ### API request payload
     payload = {
-        "name" : var_name,
-        "value" : var_value
+        "encrypted_value": var_value
         }
     response = requests.put(api_url, json=payload, headers=headers)
 
@@ -53,6 +54,7 @@ try:
     comment_body_dict = json.loads(comment_body_json)
 except json.JSONDecodeError as e:
     print("Error decoding JSON", e)
+
 
 for key, value in comment_body_dict.items():
     if key == "Job":
