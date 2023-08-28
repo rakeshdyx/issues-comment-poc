@@ -19,7 +19,7 @@ def createRpoVar(repository_name: str, var_name: str, var_value: str, github_tok
 ### API request payload
     payload = {
         "encrypted_value": var_value,
-        "key_id": ""
+        "key_id": "012345678912345678"
         }
     response = requests.put(api_url, json=payload, headers=headers)
 
